@@ -1,6 +1,6 @@
 import React  from 'react'
 import {Route, Link} from 'react-router-dom'
-import { Container, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
+import { Container, Image, List, Menu, Segment } from 'semantic-ui-react'
 import logo from '../../Assets/Images/logo.svg';
 
 const Layout = ({component: Component, ...rest}) => {

@@ -23,7 +23,7 @@ class Login extends Component {
     }
 
     _handleSubmit = (e) => {
-      e.preventDefault;
+      e.preventDefault();
       this.props.actions.login(this.state.login, this.state.password)
     }
 

@@ -13,12 +13,8 @@ const someAPICalls = {
 }
 
 function* authenticate(action){
-  console.log(action)
   const token = yield call(someAPICalls.tryLogin, action.payload)
-  console.log(token)
-  
   yield call(someAPICalls.setToken, token)
-
   yield put(loggedIn())
 }
 

@@ -1,5 +1,5 @@
 // Implementation from https://github.com/redux-saga/redux-saga/issues/178 - jamiesunderland commented on 18 Jan
-import {fork} from 'redux-saga/effects'
+import {fork, all} from 'redux-saga/effects'
 import watchStuff from './Stuff/sagas'
 import watchAuth from './Auth/sagas'
 
@@ -9,7 +9,7 @@ const sagas = [
 ]
   
 function* rootSaga() {
-    yield sagas.map(saga => fork(saga));
+    yield all(sagas.map(saga => fork(saga)));
 }
 
 export default rootSaga
