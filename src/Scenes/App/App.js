@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as stuffActions from '../../Services/Stuff/actions'
-
+import {Redirect} from 'react-router-dom'
 import {Header} from 'semantic-ui-react'
 
 import './App.css';
@@ -14,6 +14,13 @@ class App extends Component {
   }
 
   render() {
+
+    let {logged} = this.props.auth;
+
+    if( !logged ){
+      return <Redirect to="/login" />
+    }
+
     return (
 
       <div>
@@ -26,8 +33,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({stuff}) => ({
-  stuff
+const mapStateToProps = ({stuff, auth}) => ({
+  stuff, 
+  auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
