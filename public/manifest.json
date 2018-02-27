@@ -7,5 +7,5 @@
     "default_title": "React Ext"
   },
   "version": "1.0",
-  "permissions": ["tabs"]
+  "permissions": ["<all_urls>", "tabs"]
 }
