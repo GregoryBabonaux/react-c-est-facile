@@ -1,0 +1,2 @@
+export const DO_SOMETHING = 'DO_SOMETHING'
+export const DO_SOMETHING_ASYNC = 'DO_SOMETHING_ASYNC'
