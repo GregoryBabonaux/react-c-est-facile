@@ -15,6 +15,6 @@ it('renders without crashing', () => {
 
 it('renders a header', () => {
   const wrapper = shallow(<App store={store} />).dive()
-  expect(wrapper.find('Header')).to.have.length(0)
+  expect(wrapper.find('Header')).to.have.length(1)
 })
 
