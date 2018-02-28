@@ -7,7 +7,7 @@ import { Form, Header } from 'semantic-ui-react'
 
 import {Redirect} from 'react-router-dom'
 
-class Login extends Component {
+export class Login extends Component {
     constructor(props){
       super(props)
       this.state = {
@@ -26,7 +26,6 @@ class Login extends Component {
       e.preventDefault();
       this.props.actions.login(this.state.login, this.state.password)
     }
-
 
     _renderForm = () => {
       return (
