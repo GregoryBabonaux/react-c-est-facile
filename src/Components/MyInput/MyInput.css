@@ -1,0 +1,12 @@
+.field{
+  margin-bottom: 20px;
+}
+
+.field label{
+  font-size:13px;
+  font-weight: bold;
+}
+
+.inputError{
+  color:red;
+}

@@ -5,7 +5,11 @@ import * as authActions from '../../Services/Auth/actions'
 import { RingLoader } from 'react-spinners';
 import { Form, Header } from 'semantic-ui-react'
 
+import Formsy from 'formsy-react';
+import MyInput from '../../Components/MyInput/MyInput'
+
 import {Redirect} from 'react-router-dom'
+
 
 export class Login extends Component {
     constructor(props){
@@ -13,30 +17,49 @@ export class Login extends Component {
       this.state = {
         login: '',
         password: '',
+        canSubmit: false,
       }
     }
 
-    _handleChange = (e, input) => {
-      this.setState({ 
-        [input] : e.target.value 
-      })
+    _handleSubmit = (model) => {
+      this.props.actions.login(model.email, model.password)
     }
 
-    _handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.actions.login(this.state.login, this.state.password)
+    disableButton = () => {
+      this.setState({ canSubmit: false });
+    }
+
+    enableButton = () => {
+      this.setState({ canSubmit: true });
     }
 
     _renderForm = () => {
       return (
-        <Form onSubmit={(e) => this._handleSubmit(e)}>
-          <Header>Connexion</Header>
-          <Form.Group widths='equal'>
-            <Form.Input fluid label='Login' onChange={(e) => this._handleChange(e, 'login')} placeholder='Login' />
-            <Form.Input fluid label='Password' onChange={(e) => this._handleChange(e, 'password')} placeholder='Password' />
-          </Form.Group>
-          <Form.Button>Submit</Form.Button>
-        </Form>
+        <div>
+          <Formsy onValidSubmit={this._handleSubmit} onValid={this.enableButton} onInvalid={this.disableButton}>
+            <Header>Connexion</Header>
+            <Form.Group widths='equal'>
+              <MyInput
+                name="email"
+                validations="isEmail"
+                label="Adresse E-Mail"
+                placeholder="E-Mail"
+                validationError="Adresse E-Mail non valide"
+                required
+              />
+
+              <MyInput
+                name="password"
+                label="Mot de passe"
+                placeholder="Mot de passe"
+                validationError="Field empty"
+                required
+                type="password"
+              />
+            </Form.Group>
+            <Form.Button disabled={!this.state.canSubmit}>Submit</Form.Button>
+          </Formsy>
+        </div>
       )
     }
 
