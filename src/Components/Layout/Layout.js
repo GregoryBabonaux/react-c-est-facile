@@ -1,14 +1,15 @@
 import React  from 'react'
 import {Route, Link} from 'react-router-dom'
 import { Container, Image, List, Menu, Segment } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 import logo from '../../Assets/Images/logo.svg';
+
 
 const Layout = ({component: Component, ...rest}) => {
   const {path} = rest;
   return (
     <Route {...rest} render={matchProps => (
       <div>
-
         <Menu fixed='top' inverted>
           <Container>
             <Menu.Item as={Link} to="/" header>
@@ -18,11 +19,9 @@ const Layout = ({component: Component, ...rest}) => {
                   style={{ marginRight: '1.5em' }}
               />
               Stuffify
-            </Menu.Item>
-            
+            </Menu.Item> 
             <Menu.Item active={path === '/'} name="/" as={Link} to="/">Home</Menu.Item>
             <Menu.Item active={path === '/login'} name="/login" as={Link} to="/login">Login</Menu.Item>
-            
           </Container>
         </Menu>
 
@@ -35,7 +34,6 @@ const Layout = ({component: Component, ...rest}) => {
         vertical
         style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
         >
-
           <Container textAlign='center'>
             <List horizontal inverted divided link>
               <List.Item as='a' href='#'>Sitemap</List.Item>
@@ -43,10 +41,16 @@ const Layout = ({component: Component, ...rest}) => {
               <List.Item as='a' href='#'>Mentions légales</List.Item>
             </List>
           </Container>
-        
         </Segment>
       </div>
     )} />
   )
 };
+
+Layout.propTypes = {
+  component: PropTypes.func.isRequired,
+  exact: PropTypes.bool.isRequired,
+  path: PropTypes.string.isRequired
+}
+
 export default Layout
