@@ -5,7 +5,7 @@ import Login from './Scenes/Login/Login';
 
 import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes'
 import AuthenticationRoutes from './Components/AuthenticationRoutes/AuthenticationRoutes'
-import Layout from './Components/Layout/Layout'
+
 
 export default () => {
   return (
