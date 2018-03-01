@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils'; 
 import ReactDOM from 'react-dom';
 import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
@@ -14,24 +15,54 @@ describe('<Login /> container', () => {
     const wrapper = mount(<Login store={store}/>)
   });
 
-  it('should not dispatch a login action when form in not submited', () => {
+
+  it('should not dispatch action if form is empty', () => {
     const action = {
       type: 'LOGIN',
-      login :'', 
-      password: ''
+      login :'test@test.com', 
+      password: 'test@test.com'
+    }
+
+    const wrapper = mount(<Login store={store} />)
+    const button = wrapper.find('FormButton')
+    button.simulate('submit')
+    expect(store.isActionDispatched(action)).to.be.false;
+  })
+
+  it('should not dispatch a login action when form in submited with bad values', () => {
+    const action = {
+      type: 'LOGIN',
+      login :'badvalue', 
+      password: 'toto123secure'
     }
     const wrapper = mount(<Login store={store} />)
+
+    const login = wrapper.find('MyInput[name="email"]');
+    const password = wrapper.find('MyInput[name="password"]');
+
+    login.instance().props.setValue(action.login)
+    password.instance().props.setValue(action.password)
+    
+    const button = wrapper.find('FormButton')
+    button.simulate('submit')
     expect(store.isActionDispatched(action)).to.be.false;
   })
 
   it('should dispatch a login action when form in submited', () => {
     const action = {
       type: 'LOGIN',
-      login :'', 
-      password: ''
+      login :'test@test.com', 
+      password: 'test@test.com'
     }
     const wrapper = mount(<Login store={store} />)
-    const button = wrapper.find('Button')
+
+    const login = wrapper.find('MyInput[name="email"]');
+    const password = wrapper.find('MyInput[name="password"]');
+
+    login.instance().props.setValue(action.login)
+    password.instance().props.setValue(action.password)
+    
+    const button = wrapper.find('FormButton')
     button.simulate('submit')
     expect(store.isActionDispatched(action)).to.be.true;
   })

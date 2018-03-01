@@ -16,6 +16,7 @@ class MyInput extends React.Component {
     return (
       <div>
         <Form.Input 
+          name={this.props.name}
           fluid 
           label={this.props.label} 
           onChange={this.changeValue} 
