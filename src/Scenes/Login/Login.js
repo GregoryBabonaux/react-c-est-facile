@@ -4,12 +4,10 @@ import {bindActionCreators} from 'redux'
 import * as authActions from '../../Services/Auth/actions'
 import { RingLoader } from 'react-spinners';
 import { Form, Header } from 'semantic-ui-react'
-
 import Formsy from 'formsy-react';
 import MyInput from '../../Components/MyInput/MyInput'
-
 import {Redirect} from 'react-router-dom'
-
+import PropTypes from 'prop-types';
 
 export class Login extends Component {
     constructor(props){
@@ -87,6 +85,17 @@ export class Login extends Component {
         </div>
       )
     }
+}
+
+Login.propTypes = {
+  auth: PropTypes.shape({
+    loading: PropTypes.bool.isRequired,
+    logged: PropTypes.bool.isRequired,
+  }),
+  actions: PropTypes.shape({
+    login: PropTypes.func.isRequired, 
+    loggedIn: PropTypes.func.isRequired
+  })
 }
 
 const mapStateToProps = ({auth}) => ({

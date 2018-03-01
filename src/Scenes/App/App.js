@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import PropTypes from 'prop-types'
 import * as stuffActions from '../../Services/Stuff/actions'
 import {Header} from 'semantic-ui-react'
 
@@ -22,10 +23,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({stuff, auth}) => ({
-  stuff, 
-  auth
-})
+App.propTypes = {
+ actions: PropTypes.shape({
+   doSomething: PropTypes.func.isRequired,
+   doSomethingAsync: PropTypes.func.isRequired
+ })
+}
+
+const mapStateToProps = ({stuff, auth}) => ({})
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(stuffActions, dispatch)
