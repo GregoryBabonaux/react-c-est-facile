@@ -13,6 +13,10 @@ class MyInput extends React.Component {
     const errorMessage = this.props.getErrorMessage();
     let inErrorClassName = (!this.props.isValid() && !this.props.isPristine()) ? 'inputError' : ''
 
+    if(this.props.error){
+      throw new Error('C est tout pété');
+    }
+
     return (
       <div>
         <Form.Input 
