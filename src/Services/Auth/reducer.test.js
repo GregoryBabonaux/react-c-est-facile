@@ -8,13 +8,13 @@ describe('auth reducer', () => {
   });
 
   it('should handle login action', () => {
-    expect(Auth([], {
+    expect(Auth(undefined, {
         type: types.LOGIN,
     })).toEqual({loading: true, logged: false})
   });
 
   it('should handle logged in action', () => {
-    expect(Auth([], {
+    expect(Auth(undefined, {
       type: types.LOGGED_IN,
     })).toEqual({loading: false, logged: true})
 
