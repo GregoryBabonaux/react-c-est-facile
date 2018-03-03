@@ -1,15 +1,15 @@
 import * as types from './actionTypes'
 import initialState from '../../Store/initialState'
 
-let stuff = (state = initialState.stuff, action) => {
+let stuff = (state = initialState.get('stuff'), action) => {
+
   switch(action.type){
     case types.DO_SOMETHING:
-      let newState = [...state]
-      newState.push(action.something)
-      return newState
-    
+      return state.set(state.size, action.something)
+
     default:
-        return state;
+      return state
+
   }
 }
-export default stuff; 
+export default stuff;

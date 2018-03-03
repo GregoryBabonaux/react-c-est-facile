@@ -27,8 +27,8 @@ ProtectedRoutes.propTypes = {
 }
 
 
-const mapStateToProps = ({auth}) => ({
-  auth
+const mapStateToProps = (state) => ({
+  auth : state.toJS().auth
 })
 
 export default connect(mapStateToProps)(ProtectedRoutes);

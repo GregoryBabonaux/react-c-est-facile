@@ -7,6 +7,8 @@ import {Provider} from 'react-redux'
 import { createMockStore } from 'redux-test-utils';
 import Login from './Login';
 import initialState from '../../Store/initialState'
+import Immutable from 'immutable'
+
 const store = createMockStore(initialState)
 
 describe('<Login /> container', () => {
@@ -68,7 +70,7 @@ describe('<Login /> container', () => {
   })
 
   it('should render a spinner if loading is true', () => {
-    let newState = {...initialState, auth : {...initialState.auth, loading: true} }
+    const newState = initialState.setIn(['auth', 'loading'], true)
     const newStore = createMockStore(newState)
     const wrapper = mount(<Login store={newStore} />)
     
