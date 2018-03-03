@@ -8,6 +8,7 @@ import Formsy from 'formsy-react';
 import MyInput from '../../Components/MyInput/MyInput'
 import {Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import ErrorBoundary from '../../Components/ErrorBoundary/ErrorBoundary'
 
@@ -81,7 +82,8 @@ export class Login extends Component {
     }
 
     render(){
-      let {loading, logged} = this.props.auth;
+      const loading = this.props.auth.get('loading')
+      const logged = this.props.auth.get('logged')
 
       if( logged ) {
         return <Redirect to="/" />
@@ -98,7 +100,7 @@ export class Login extends Component {
 }
 
 Login.propTypes = {
-  auth: PropTypes.shape({
+  auth: ImmutablePropTypes.contains({
     loading: PropTypes.bool.isRequired,
     logged: PropTypes.bool.isRequired,
   }),
@@ -108,8 +110,8 @@ Login.propTypes = {
   })
 }
 
-const mapStateToProps = ({auth}) => ({
-  auth
+const mapStateToProps = (state) => ({
+  auth : state.get('auth')
 })
 
 const mapDispatchToProps = (dispatch) => ({

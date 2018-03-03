@@ -30,7 +30,7 @@ App.propTypes = {
  })
 }
 
-const mapStateToProps = ({stuff, auth}) => ({})
+const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(stuffActions, dispatch)
